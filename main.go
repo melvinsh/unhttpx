@@ -26,7 +26,14 @@ func main() {
 	}
 
 	for _, url := range urls {
-		fmt.Println(host(url))
+		host := host(url)
+
+		if host == "" {
+			fmt.Fprintln(os.Stderr, "Cannot parse as URL: "+url)
+			continue
+		}
+
+		fmt.Println(host)
 	}
 }
 
@@ -34,7 +41,8 @@ func host(u string) string {
 	parsed, err := url.Parse(u)
 
 	if err != nil {
-		return u
+		fmt.Fprintln(os.Stderr, err)
+		return ""
 	}
 
 	return parsed.Host
