@@ -12,7 +12,10 @@ go install -v github.com/melvinsh/unhttpx@latest
 ## Usage
 
 ``` bash
-echo "https://google.com/yo" | unhttpx
+$ echo "https://google.com/yo" | unhttpx
+google.com
 
-cat urls.txt | unhttpx
+$ cat urls.txt | unhttpx
+hackerone.com
+zerocopter.com
 ```
