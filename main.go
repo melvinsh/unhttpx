@@ -3,47 +3,24 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"net/url"
 	"os"
 )
 
 func main() {
-	var urls []string
-
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
-		u := scanner.Text()
-
-		if u != "" {
-			urls = append(urls, u)
+		inputURL := scanner.Text()
+		parsedURL, err := url.Parse(inputURL)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error parsing URL: %v\n", err)
+			continue
 		}
+		fmt.Println(parsedURL.Host)
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Println(err)
+		fmt.Fprintf(os.Stderr, "Error reading input: %v\n", err)
 	}
-
-	for _, url := range urls {
-		host := host(url)
-
-		if host == "" {
-			fmt.Fprintln(os.Stderr, "Cannot parse as URL: "+url)
-			continue
-		}
-
-		fmt.Println(host)
-	}
-}
-
-func host(u string) string {
-	parsed, err := url.Parse(u)
-
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return ""
-	}
-
-	return parsed.Host
 }
