@@ -2,9 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/melvinsh/unhttpx.svg)](https://pkg.go.dev/github.com/melvinsh/unhttpx)
 
-unhttpx is **not** a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library. In fact, it does the exact opposite. 
-
-**TL;DR: turns a list of URLs into hostnames.**
+Turns a list of URLs into hostnames.
 
 ## Installation
 
